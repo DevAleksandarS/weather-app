@@ -9,7 +9,7 @@ import {
 import "./style-css/style.css";
 
 function App() {
-  const [weather, setWeather] = useState("WiDaySunny");
+  const [weather, setWeather] = useState(WiNightAltCloudy);
 
   return (
     <div className="container">
@@ -21,7 +21,8 @@ function App() {
       <p className="text">Current weather in: </p>
       <p className="city-name">Gradiška</p>
       <p className="date">15/07/21</p>
-      <weather />
+      <p className="weather-icon">{weather}</p>
+      <p className="celsius">23°C</p>
     </div>
   );
 }

@@ -13,6 +13,8 @@ body {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url("../img/wallpaper.jpg");
 
+  backdrop-filter: blur(4px);
+
   height: 100vh;
   width: 100vw;
 
@@ -121,6 +123,22 @@ body {
   font-weight: bold;
   color: #fff;
   text-shadow: rgba(0, 0, 0, 0.5) 2px 2px 1px;
+}
+
+.weather-icon {
+  color: #fff;
+  font-size: 150px;
+  text-align: center;
+  filter: drop-shadow(rgba(0, 0, 0, 0.5) 2px 2px 1px);
+}
+
+.celsius {
+  color: #fff;
+  font-size: 50px;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.5) 2px 2px 1px;
+
+  transform: translateY(-100%);
 }
 
 @media only screen and (max-width: 400px) {
