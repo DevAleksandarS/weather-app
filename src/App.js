@@ -6,10 +6,15 @@ import {
   WiStormShowers,
   WiSnow,
 } from "react-icons/wi";
+import useLocation from "./custom-hooks/useLocation";
 import "./style-css/style.css";
 
 function App() {
   const [weather, setWeather] = useState(WiNightAltCloudy);
+
+  const [lat, lon] = useLocation();
+
+  console.log(lat, lon);
 
   return (
     <div className="container">
