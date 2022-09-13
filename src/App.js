@@ -9,13 +9,32 @@ import {
 import useLocation from "./custom-hooks/useLocation";
 import "./style-css/style.css";
 
+const geoAPI = {
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "f07331321fmshd5412fa13f915dap11e0aajsn701c098c1ef7",
+    "X-RapidAPI-Host": "forward-reverse-geocoding.p.rapidapi.com",
+  },
+};
+
 function App() {
   const [weather, setWeather] = useState(WiNightAltCloudy);
   const [citySearch, setCitySearch] = useState("");
+  const [cityLatLon, setCityLatLon] = useState({ lat: "", lon: "" });
 
   const [lat, lon] = useLocation();
 
-  function FindLatLonCity() {}
+  function FindLatLonCity() {
+    fetch(
+      `https://forward-reverse-geocoding.p.rapidapi.com/v1/forward?city=${citySearch}&accept-language=en&polygon_threshold=0.0`,
+      geoAPI
+    )
+      .then((response) => response.json())
+      .then((response) =>
+        setCityLatLon({ lat: response[0].lat, lon: response[0].lon })
+      )
+      .catch((err) => console.error(err));
+  }
 
   return (
     <div className="container">
