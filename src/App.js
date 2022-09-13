@@ -30,7 +30,9 @@ function App() {
       geoAPI
     )
       .then((response) => response.json())
-      .then((response) => console.log(response))
+      .then((response) =>
+        setCityLatLon({ lat: response[0].lat, lon: response[0].lon })
+      )
       .catch((err) => console.error(err));
   }
 
