@@ -7,7 +7,6 @@ import {
   WiSnow,
 } from "react-icons/wi";
 import useLocation from "./custom-hooks/useLocation";
-import useCityInfo from "./custom-hooks/useCityInfo";
 import "./style-css/style.css";
 
 function App() {
