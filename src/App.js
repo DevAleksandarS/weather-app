@@ -7,12 +7,16 @@ import {
   WiSnow,
 } from "react-icons/wi";
 import useLocation from "./custom-hooks/useLocation";
+import useCityInfo from "./custom-hooks/useCityInfo";
 import "./style-css/style.css";
 
 function App() {
   const [weather, setWeather] = useState(WiNightAltCloudy);
+  const [citySearch, setCitySearch] = useState("");
 
   const [lat, lon] = useLocation();
+
+  function FindLatLonCity() {}
 
   console.log(lat, lon);
 
@@ -20,8 +24,15 @@ function App() {
     <div className="container">
       <h1 className="logo">WeatherAPP</h1>
       <div className="flex">
-        <input className="input" type="text" placeholder="City..."></input>
-        <button className="btn-find">Find</button>
+        <input
+          onChange={(e) => setCitySearch(e.target.value)}
+          className="input"
+          type="text"
+          placeholder="City..."
+        ></input>
+        <button onClick={() => FindLatLonCity()} className="btn-find">
+          Find
+        </button>
       </div>
       <p className="text">Current weather in: </p>
       <p className="city-name">Gradiška</p>
