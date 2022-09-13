@@ -17,8 +17,6 @@ function App() {
 
   function FindLatLonCity() {}
 
-  console.log(lat, lon);
-
   return (
     <div className="container">
       <h1 className="logo">WeatherAPP</h1>
