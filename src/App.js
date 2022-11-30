@@ -95,11 +95,13 @@ function App() {
           <p className="city-name">{state.city}</p>
           <p className="date">{state.date}</p>
           <p className="weather-icon">
-            <img
-              className="weather-icon-img"
-              src={state.weatherIcon}
-              alt="Weather icon"
-            ></img>
+            {state.weatherIcon === "" ? null : (
+              <img
+                className="weather-icon-img"
+                src={state.weatherIcon}
+                alt="Weather icon"
+              ></img>
+            )}
           </p>
           <p className="celsius">{state.temp}°C</p>
         </>
