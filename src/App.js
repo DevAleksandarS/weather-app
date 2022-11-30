@@ -19,6 +19,13 @@ const reducer = (state, action) => {
         weatherIcon: action.payload.data.current.condition.icon,
         temp: action.payload.data.current.temp_c,
       };
+    case "RESET":
+      return {
+        city: "",
+        date: "",
+        weatherIcon: "",
+        temp: "",
+      };
     default:
       return state;
   }
@@ -26,6 +33,7 @@ const reducer = (state, action) => {
 
 function App() {
   const [citySearch, setCitySearch] = useState("");
+  const [error, setError] = useState(null);
   const [state, dispatch] = useReducer(reducer, {
     city: "",
     date: "",
@@ -48,15 +56,21 @@ function App() {
   }
 
   const FindCityWeather = () => {
+    setError(null);
+    dispatch({ type: "RESET" });
     fetch(
       `https://weatherapi-com.p.rapidapi.com/current.json?q=${citySearch}`,
       weatherAPI
     )
       .then((response) => response.json())
       .then((response) => {
+        if (response.error) {
+          setError(response.error.message);
+          return;
+        }
+
         dispatch({ type: "SET_VALUES", payload: { data: response } });
-      })
-      .catch((err) => console.error(err));
+      });
   };
 
   return (
@@ -73,17 +87,23 @@ function App() {
           Find
         </button>
       </div>
-      <p className="text">Current weather in: </p>
-      <p className="city-name">{state.city}</p>
-      <p className="date">{state.date}</p>
-      <p className="weather-icon">
-        <img
-          className="weather-icon-img"
-          src={state.weatherIcon}
-          alt="Weather icon"
-        ></img>
-      </p>
-      <p className="celsius">{state.temp}°C</p>
+      {error ? (
+        <p className="text">Can't find that city! Try again!</p>
+      ) : (
+        <>
+          <p className="text">Current weather in: </p>
+          <p className="city-name">{state.city}</p>
+          <p className="date">{state.date}</p>
+          <p className="weather-icon">
+            <img
+              className="weather-icon-img"
+              src={state.weatherIcon}
+              alt="Weather icon"
+            ></img>
+          </p>
+          <p className="celsius">{state.temp}°C</p>
+        </>
+      )}
     </div>
   );
 }
